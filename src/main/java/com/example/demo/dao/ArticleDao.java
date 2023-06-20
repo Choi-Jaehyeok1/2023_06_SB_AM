@@ -9,13 +9,15 @@ import com.example.demo.vo.Article;
 @Mapper
 public interface ArticleDao {
 	
-	public Article writeArticle(String title, String body);
+	public void writeArticle(String title, String body);
 
 	public Article getArticleById(int id);
-
+	
 	public void modifyArticle(int id, String title, String body);
 
 	public void deleteArticle(int id);
 
 	public List<Article> getArticles();
+
+	public int getLastInsertId();
 }

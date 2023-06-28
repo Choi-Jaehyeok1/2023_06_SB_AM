@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,5 +49,48 @@ public class UsrMemberController {
 		ResultData<Member> doJoinRd = memberService.doJoin(loginId, loginPw, name, nickname, cellphoneNum, email);
 		
 		return doJoinRd;
+	}
+	
+	@RequestMapping("/usr/member/doLogin")
+	@ResponseBody
+	public ResultData doLogin(HttpSession session, String loginId, String loginPw) {
+		
+		if(session.getAttribute("loginedMemberId") != null) {
+			return ResultData.from("F-A", "로그아웃 후 이용해주세요");
+		}
+		
+		if(Util.empty(loginId)) {
+			return ResultData.from("F-1", "아이디를 입력해주세요");
+		}
+		if(Util.empty(loginPw)) {
+			return ResultData.from("F-2", "비밀번호를 입력해주세요");
+		}
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if (member == null) {
+			return ResultData.from("F-3", Util.f("%s은(는) 존재하지 않는 아이디입니다", loginId));
+		}
+		
+		if (member.getLoginPw().equals(loginPw) == false) {
+			return ResultData.from("F-4", "비밀번호가 일치하지 않습니다");
+		}
+
+		session.setAttribute("loginedMemberId", member.getId());
+		
+		return ResultData.from("S-1", Util.f("%s님 환영합니다~", member.getNickname()));
+	}
+	
+	@RequestMapping("/usr/member/doLogout")
+	@ResponseBody
+	public ResultData doLogout(HttpSession session) {
+		
+		if(session.getAttribute("loginedMemberId") == null) {
+			return ResultData.from("F-A", "로그인 후 이용해주세요");
+		}
+		
+		session.removeAttribute("loginedMemberId");
+		
+		return ResultData.from("S-1", "정상적으로 로그아웃 되었습니다");
 	}
 }

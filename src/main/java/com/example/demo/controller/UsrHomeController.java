@@ -12,8 +12,7 @@ public class UsrHomeController {
 	}
 	
 	@RequestMapping("/")
-	public String showrRoot() {
+	public String showRoot() {
 		return "redirect:/usr/home/main";
 	}
-	
 }

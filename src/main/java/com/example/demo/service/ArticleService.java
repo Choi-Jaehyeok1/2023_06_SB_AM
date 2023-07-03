@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ArticleDao;
-import com.example.demo.util.Util;
 import com.example.demo.vo.Article;
-import com.example.demo.vo.ResultData;
 
 @Service
 public class ArticleService {
@@ -29,11 +27,8 @@ public class ArticleService {
 		return articleDao.getArticleById(id);
 	}
 	
-	public ResultData<Article> modifyArticle(int id, String title, String body) {
-		
+	public void modifyArticle(int id, String title, String body) {
 		articleDao.modifyArticle(id, title, body);
-		
-		return ResultData.from("S-1", Util.f("%d번 게시글을 수정했습니다", id), "article", getArticleById(id));
 	}
 	
 	public void deleteArticle(int id) {
@@ -46,15 +41,6 @@ public class ArticleService {
 
 	public int getLastInsertId() {
 		return articleDao.getLastInsertId();
-	}
-
-	public ResultData actorCanModify(int loginedMemberId, int memberId) {
-		
-		if(loginedMemberId != memberId) {
-			return ResultData.from("F-B", "해당 게시글에 대한 권한이 없습니다");
-		}
-		
-		return ResultData.from("S-1", "수정 가능");
 	}
 
 	public Article getForPrintArticle(int id) {

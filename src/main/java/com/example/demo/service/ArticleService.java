@@ -19,8 +19,8 @@ public class ArticleService {
 	}
 	
 	// 서비스 메서드
-	public void writeArticle(int memberId, String title, String body) {
-		articleDao.writeArticle(memberId, title, body);
+	public void writeArticle(int memberId, int boardId, String title, String body) {
+		articleDao.writeArticle(memberId, boardId, title, body);
 	}
 	
 	public Article getArticleById(int id) {
@@ -35,8 +35,11 @@ public class ArticleService {
 		articleDao.deleteArticle(id);
 	}
 
-	public List<Article> getArticles() {
-		return articleDao.getArticles();
+	public List<Article> getArticles(int boardId, String searchKeyword, String searchKeywordType, int itemsInAPage, int page) {
+		
+		int limitStart = (page - 1) * itemsInAPage;
+		
+		return articleDao.getArticles(boardId, searchKeyword, searchKeywordType, limitStart, itemsInAPage);
 	}
 
 	public int getLastInsertId() {
@@ -45,6 +48,14 @@ public class ArticleService {
 
 	public Article getForPrintArticle(int id) {
 		return articleDao.getForPrintArticle(id);
+	}
+
+	public int getArticlesCnt(int boardId, String searchKeyword, String searchKeywordType) {
+		return articleDao.getArticlesCnt(boardId, searchKeyword, searchKeywordType);
+	}
+
+	public void increaseHitCnt(int id) {
+		articleDao.increaseHitCnt(id);
 	}
 	
 }

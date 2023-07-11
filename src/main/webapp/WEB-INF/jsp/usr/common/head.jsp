@@ -15,6 +15,7 @@
 <!-- 폰트어썸 불러오기 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 <link rel="stylesheet" href="/resource/common.css" />
+<script src="/resource/common.js" defer="defer"></script>
 <title>${pageTitle }</title>
 </head>
 <body>
@@ -23,7 +24,8 @@
 		<div class="flex-grow"></div>
 		<ul class="flex">
 			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/">HOME</a></li>
-			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/article/list">LIST</a></li>
+			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/article/list?boardId=1">NOTICE</a></li>
+			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/article/list?boardId=2">FREE</a></li>
 			<c:if test="${rq.getLoginedMemberId() == 0}">
 				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="/usr/member/login">LOGIN</a></li>
 			</c:if>
@@ -35,6 +37,6 @@
 	
 	<section class="my-3 text-2xl">
 		<div class="container mx-auto px-3">
-			<h1>${pageTitle }&nbsp;Page</h1>
+			<h1>${pageTitle }</h1>
 		</div>
 	</section>

@@ -8,7 +8,7 @@
 	<section class="mt-8">
 		<div class="container mx-auto">
 			<div>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat molestiae maiores fugiat nisi eos a inventore illum eaque eius aspernatur alias qui. Ut recusandae id ratione sit minima nihil saepe.
+				최재혁의 웹 개발
 			</div>
 			<div>
 				안녕하세요

@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set var="pageTitle" value="Login" />
+<c:set var="pageTitle" value="Password Modify" />
 <%@ include file="../common/head.jsp" %>
 
 	<section class="mt-8">
 		<div class="container mx-auto">
-			<form action="doLogin" method="POST">
+			<form action="doPasswordModify" method="POST">
 				<div class="table-box-type-1">
 					<table>
 						<colgroup>
@@ -15,15 +15,15 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th>로그인 아이디</th>
-								<td><input class="input input-bordered input-accent w-96" type="text" name="loginId" placeholder="아이디를 입력해주세요" /></td>
+								<th>새 비밀번호</th>
+								<td><input class="input input-bordered input-accent w-96" type="text" name="loginPw" placeholder="새 비밀번호를 입력해주세요" /></td>
 							</tr>
 							<tr>
-								<th>로그인 비밀번호</th>
-								<td><input class="input input-bordered input-accent w-96" type="text" name="loginPw" placeholder="비밀번호를 입력해주세요" /></td>
+								<th>새 비밀번호 확인</th>
+								<td><input class="input input-bordered input-accent w-96" type="text" name="loginPwChk" placeholder="새 비밀번호 확인을 입력해주세요" /></td>
 							</tr>
 							<tr>
-								<td colspan="2"><button class="btn btn-accent btn-sm">로그인</button></td>
+								<td colspan="2"><button class="btn btn-accent btn-sm">변경</button></td>
 							</tr>
 						</tbody>
 					</table>
@@ -35,3 +35,4 @@
 		</div>
 	</section>
 	
+<%@ include file="../common/foot.jsp" %>
